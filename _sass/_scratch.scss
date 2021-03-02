@@ -1,59 +1,66 @@
-// Scratch styles - these are styles I'm quickly throwing together and prototyping with which will be  eventually tidied/consolodated into the relevant partials if the design works
+// Scratch styles - these are styles I'm quickly throwing together and prototyping with which will be  eventually tidied/consolodated into the relevant partials if the design works. It's supposed to be a mess.
 // ---------------------------------------/
-body, html {
-  height: 100%;
-  // background: lighten($primary, 6%);
-  background: $primary;
-}
-body {background: $primary;}
-.footer {
-  background: $linen;
-}
-a {
-  color: $black;
-  text-decoration: underline; // text-decoration-skip fallback
-  text-decoration-skip: ink; // although this is pretty ugly
 
+/* filter tags */
+ul.filter-tags {
+  padding: 0;
 }
+ul.filter-tags li {
+  list-style: none;
+  float: left;
+}
+// label {
+//   user-select: none!important; /* need to check this */
+// }
+input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 
-.two-up {
-  grid-column: auto / span 12;
-  @media (min-width: $mq-l) {
-    grid-column: auto / span 6;
+    & + label {
+        display: inline-block;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        transition: all 0.3s ease-in-out;
+        padding: .4em .8em;
+        color: $black;
+        background-color: $silver;
+        border: solid $black;
+        border-width: 2px;
+        margin-right: -2px;
+        margin-bottom: -2px; /* offsets bottom border when tags wrap */
+        &:hover  {
+          background-color: darken($silver, 20%);
+        }
+        &:active, &:focus {
+          background-color: $primary;
+        }
+    }
+    &:checked + label {
+        background-color: $primary;
+        color:  $black;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        &:hover, &:focus {
+          background-color: $primary;
+          color: $black;
+        }
+    }
+    &:active {
+        background-color: red;
     }
 }
 
-.mbm {
-  margin-bottom: 0.6em;
-}
-.mbn {
-  margin-bottom: 0;
-}
-.mtn {
-  margin-top: 0;
-}
-.lhs {
-  line-height: 1.4;
-}
-a:hover {
-  color: $secondary;
-  text-decoration: none;
-}
-.tile:hover {
-  background: lighten($primary, 20%);
-}
-.tile a:hover, .tile-list a:hover {
-  color: $black;
-}
-a.full-link {
-  display: inline-block;
-  height: 100%;
-  width: 100%;
-  line-height: inherit;
-}
-body.examples .tile:hover {
-  background: $primary;
-}
 hr {
     display: block;
     height: 1px;
@@ -62,53 +69,21 @@ hr {
     margin: 1em 0;
     padding: 0;
 }
-// p {max-width: 40em;} // test for legibility
-.site-logo {
-  float: left;
-  display: block;
-}
-.site-logo a img {
-  width: 4em;
-  height: 4em;
-}
+
 .site-logo:hover, .logo:hover, .view-toggle:hover, .view-toggle-list:hover {
   transform: scale(1.05);
   transition: all .2s ease-in-out;
 }
 
-.site-nav {
+.site-nav, div.filters {
   grid-column: auto / span 12;
 }
-.site-nav ul {
-  list-style: none;
-  padding: 0;
-  margin-top: 0.5em;
-  float: none;
-  width: 300px; // forces nav to break onto two lines
-  overflow: visible; // allows localised text to overflow if longer
-  @media (min-width: $mq-l) {
-     padding-left: 1.6em;
-     margin: 0.4em;
-     float: right;
-     width: auto;
-    }
+div.filters span {
+  display: block;
+  width: 100%;
 }
-.site-nav li {
-  margin-right: 0.6em;
-  font-weight: bold;
-  float: left;
-  display: inline-block;
-}
-.site-nav li:last-child {
-  margin-right: 0;
-}
-.site-nav a {
-  text-decoration: none;
-}
-.site-nav a:hover {
-  text-decoration: underline;
-  color: $black;
-}
+
+
 .full, .post-header {
   grid-column: auto / span 12;
 }
@@ -119,7 +94,7 @@ hr {
 
 .two-thirds {
   grid-column: auto / span 12;
-  @media (min-width: $mq-m) {
+  @media (min-width: $bp-medium) {
     grid-column: auto / span 8;
     }
 }
@@ -127,22 +102,22 @@ hr {
 .three-up {
   grid-column: auto / span 6;
   position: relative;
-  @media (min-width: $mq-m) {
-    grid-column: auto / span 4;
+  @media (min-width: $bp-medium) {
+    grid-column: auto / span 3;
     margin-bottom: 1.6em;
     }
 }
 .info-block, .post-content, article {
   grid-column: auto / span 12;
   position: relative;
-  @media (min-width: $mq-m) {
+  @media (min-width: $bp-medium) {
     grid-column: auto / span 8;
     }
 }
 
 aside {
   grid-column: auto / span 12;
-  @media (min-width: $mq-m) {
+  @media (min-width: $bp-medium) {
     grid-column: auto / span 4;
     }
 }
@@ -152,44 +127,7 @@ p.source {
   border-bottom: solid 1px $black;
   font-weight: bold;
 }
-// .what .info-icon {
-//   grid-column: auto / span 12;
-//   background: red;
-//   border-radius: 50%;
-//   // will figure out what to do with small screens when I can figure out row swapping
-//   @media (min-width: 700px) {
-//     grid-column: auto / span 4;
-//     width: 500px;
-//     height: 500px;
-//     bottom: -280px;
-//     position: relative;
-//     }
-// }
-//
-// .why .info-icon {
-//   grid-column: auto / span 12;
-//   background: green;
-//   // will figure out what to do with small screens when I can figure out row swapping
-//   @media (min-width: 700px) {
-//     grid-column: auto / span 4;
-//     height: 60%;
-//     position: relative;
-//     top: 0;
-//     left: -10%;
-//     }
-// }
 
-// .who .info-icon {
-//   grid-column: auto / span 12;
-//   // will figure out what to do with small screens when I can figure out row swapping
-//   @media (min-width: 700px) {
-//     grid-column: auto / span 4;
-//     border-style: solid;
-//     border-width: 200px 200px 0 200px;
-//     border-color: yellow transparent transparent transparent;
-//     margin-top: 65%;
-//     }
-// }
 .arrow:after {
   content: "❯";
   padding: 1em 0.2em;
@@ -219,34 +157,16 @@ p.source {
   left: 0;
   height: 12px;
   width: 8em;
-  @media (min-width: $mq-m) {
+  @media (min-width: $bp-medium) {
     width: 12em;
     }
 }
-body.home header.site-header {
+header.site-header {
   background: $primary;
-  height: 100%;
-  // background-image: url(/images/triangle-white.svg);
-  // background-position: left top;
+  height: auto;
+  margin-bottom: 2em;
 }
 
-.site-header {
-  height: 4em;
-  min-height: 4em;
-}
-// div.grid {
-//   display: grid;
-//   grid-gap: 2.2em;
-//   grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
-//   grid-auto-rows: minmax(100px, auto);
-// }
-// .grid > div {
-//   // border: 1px solid #3bc9db;
-//   // display: flex; // not sure why this was here
-//   background: $white;
-//   padding: 0.4em 1em;
-//   // border-radius: 0.4em;
-// }
 div.page-content {
   background: $white;
 }
@@ -259,45 +179,30 @@ margin-left: -0.6em;
 }
 
 ol.cards li {
-  // float: left; // what was I thinking
-  // list-style-type: lower-latin;
   counter-increment: step-counter;
   margin: 0 0 0.125em 0;
-  // padding-left: 0.2em;
-  // line-height: 1.4;
 }
 
-// ol.cards li::before {
-//     content: counter(step-counter);
-//     // margin-right: 0.6em;
-//     // font-size: 80%;
-//     font-size: 0.9em;
-//     // background-color: lighten($mid-grey, 40%);
-//     // color: lighten($dark-grey, 20%);
-//     // font-weight: bold;
-//     // border-radius: 0.2em;
-//     position: absolute;
-//     left: 0.6em;
-//     width: 1.6em;
-//     text-align: right;
-//     padding: 0.05em;
-//     // font-family: Georgia, sans-serif;
-//     // font-weight: normal;
-//
-// }
+
 .sort-label {
   display: block;
-  margin-top: -1.6em;
   float: left;
+  margin-top: 0;
+  user-select: none;
+@media (min-width: $bp-medium) {
+  margin-top: -1.6em;
+  display: inline;
+  }
 }
 
-.sort {
+.sort{
   display:inline-block;
   float: left;
   cursor: pointer;
   user-select: none;
   transition: all 0.3s ease-in-out;
-  max-width: 40%;
+  margin-right: -2px;
+  width: auto!important; /* overrides .btn utility class */
 }
 .sort-arrow {
   height: 0.8em;
@@ -334,26 +239,16 @@ img.circle {
   font-weight: bold;
 }
 
-// .tile {
-//   background: $white;
-//   padding: 1em 1.4em;
-//   grid-column: auto / span 12;
-//   border-radius: 0.4em;
-//   @media (min-width: 920px) {
-//       grid-column: auto / span 4;
-//     }
-// }
-
 .tile {
   padding: 0.6em 0.2em;
   border-top: solid 8px $black;
   grid-column: auto / span 12;
   overflow: hidden;
   transition: background-color 0.3s ease;
-  @media (min-width: $mq-m) {
+  @media (min-width: $bp-medium) {
         grid-column: auto / span 6;
       }
-  @media (min-width: $mq-l) {
+  @media (min-width: $bp-large) {
         grid-column: auto / span 4;
       }
 }
@@ -386,26 +281,36 @@ input.search  {
   border: solid 2px $black;
   padding-left: 1em;
   width: 100%;
+}
+
+input.search {
   grid-column: auto / span 12;
-  @media (min-width: $mq-m) {
+  @media (min-width: $bp-medium) {
         grid-column: auto / span 6;
       }
-  @media (min-width: $mq-l) {
+  @media (min-width: $bp-large) {
         grid-column: auto / span 8;
       }
+
 }
 @supports (display: grid) {
   div.toggle {
     display: none; //hidden on mob
-    @media (min-width: $mq-m) {
+    @media (min-width: $bp-medium) {
           grid-column: auto / span 6;
           display: block;
         }
-    @media (min-width: $mq-l) {
+    @media (min-width: $bp-large) {
           grid-column: auto / span 4;
         }
   }
 }
+div.hide-large {
+  display: inline-block;
+@media (min-width: $bp-medium) {
+        display: none;
+    }
+  }
 input.search::placeholder {
   color: $black;
   font-weight: normal;
@@ -432,6 +337,8 @@ input[type=text]:focus {
     background:$primary;
     border:0 none;
     cursor:pointer;
+    -webkit-user-select: none;
+    user-select: none;
     border: solid 2px $black;
 }
 .btn-secondary {
@@ -442,60 +349,10 @@ input[type=submit]:hover, .btn:hover {
 }
 
 
-// .ghost {
-//   border: dashed 4px $white;
-//   background: transparent;
-//   position: relative;
-//   border-radius: 0.8em; // different to the tile radius for _reasons_
-//   padding: 1em;
-// }
-.ghost {
-  border: dotted 8px $black;
-  padding-left: 1em;
-  padding-right: 1em;
-}
-// div.indent-block {
-//   background: lighten($primary, 35%);
-//   padding: 2em;
-//   float: right;
-//   font-size: 1.4em;
-//   max-width: 32em;
-//   -webkit-box-shadow: 10px 10px 0px 0px $primary;
-//   -moz-box-shadow: 10px 10px 0px 0px $primary;
-//   box-shadow: 10px 10px 0px 0px $primary;
-// }
-// div.indent-block-left {
-//   float: left;
-// }
 
 
-// .ghost * {
-//   position: relative;
-//   top: 50%;
-//   transform: translateY(-50%);
-//   font-size: $m;
-//   display: inline-block;
-// }
-.ghost:hover {
-  // border: solid;
-}
-
-.gradient-block {
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/$primary+0,f9e352+40,fae76b+100 */
-background: $primary; /* Old browsers */
-background: -moz-linear-gradient(top, $primary 0%,  lighten($secondary, 15%) 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top, $primary 0%, lighten($secondary, 15%) 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom, $primary 0%, lighten($secondary, 15%) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$primary', endColorstr='lighten($secondary, 15%)',GradientType=0 ); /* IE6-9 */
-height: auto;
 
 
-}
-
-.alt-idea {
-  color: #04ff86;
-}
-.tile h2 {display: block; margin: 0;}
 
 
 .icon {
@@ -507,28 +364,12 @@ height: auto;
   background: $white;
 
 }
-// .site-footer p:first-child {
-//   font-size: 1.6em;
-// }
-// .what, .who, .why {
-//   overflow: hidden;
-// }
-// .what {
-//   background: lighten($primary, 10%);
-// }
-// .why {
-//   background-image: url(/images/triangle-white.svg);
-//   background-size: 8em;
-// }
-// .who {
-//   background-image: url(/images/triangle-grid.svg);
-// }
 
 
 header.example-header {
   grid-column: 1 / -1;
   border-bottom: solid 3px $black;
-
+  margin-bottom: 1.4em;
 }
 
 .help-footer {
@@ -537,6 +378,7 @@ header.example-header {
   border-top: solid 12px $primary;
   border-bottom: solid 2px $primary;
   padding: 1em;
+  overflow: hidden;
 }
 
 pre, code {
@@ -620,11 +462,11 @@ input, button, submit { border:none; }
 .subscribe-input, .subscribe-btn {
   display: block;
   width: 100%;
-  @media (min-width: $mq-m) {
+  @media (min-width: $bp-medium) {
     display: inline-block;
     }
 }
-@media (min-width: $mq-m) {
+@media (min-width: $bp-medium) {
   .subscribe-input {
   width: 64%;
   border-right: 0!important;
@@ -633,7 +475,7 @@ input, button, submit { border:none; }
 .subscribe-btn {
   height: 48px;
   margin-top: 0.4em;
-  @media (min-width: $mq-m) {
+  @media (min-width: $bp-medium) {
       width: auto;
       margin-top: 0;
       margin-left: -0.4em;
@@ -642,22 +484,8 @@ input, button, submit { border:none; }
 
 // active nav highlighting
 
-body.about nav a.about,
-body.create nav a.create,
-body.examples nav a.examples,
-body.contribute nav a.contribute {
-  text-decoration: underline;
-}
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0,0,0,0);
-  border: 0;
-}
+
+
 
 header h1 {
   margin-top: 0.6em;
@@ -667,18 +495,14 @@ header h1 {
   border-bottom: solid 4px $black;
   padding-bottom: 1em;
 }
-// carbon
-
-div#carbonads a {
-  text-decoration: none;
-}
-.carbon-img {
-  float: left;
-  margin-right: 1em;
-  margin-bottom: 0.6em
-}
-.carbon-poweredby {
-  display: block;
-  margin-top: 1em;
-  font-size: 0.8em;
+.grid-background {
+  background: url(/images/cross-grid.svg) center top;
+  padding: 1em 0 0.6em 0;
+    @media (min-width: $bp-medium) {
+      height: 158px;
+      padding-bottom: none;
+    }
+    @media (min-width: $bp-large) {
+      height: 236px;
+    }
 }

@@ -1,7 +1,7 @@
 ---
 title: Digital Product Design Principles
 author: Degreed
-overview:
+overview: This set of twelve design priniciples used by team at Degreed are created to help us make design decisions.The practical and clear principles aids the process of any designer who is working on digital products.
 link: https://dev.degreed.com/digital-product-design-principles-8bc9eb6c080c
 principles:
 - principle: Define the problem first
@@ -40,5 +40,5 @@ principles:
 - principle: Design for change
   summary: |
     No design is ever finished or done. Don’t be afraid of throwing away work, features or designs, good design is always evolving and grows with the business. Design with change in mind will allow us to quickly adapt to new learnings and insights. Every feature or functionality that is introduced needs time to improve. Once something is launched, evaluating performance and iteration should be the focus.
-
+tags: [specific, organisations]
 ---

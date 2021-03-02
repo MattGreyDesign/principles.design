@@ -5,34 +5,28 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-
-html {
-  background: $white;
+body, html {
+  height: 100%;
 }
 
-// body{
-//   @include sans;
-//   color: $text_color;
-//   font-size: 1em;
-//   line-height: 1.5;
-//   font-family: $body-font;
-// }
-
-// .wrapper:before,
-// .wrapper:after { content:""; display:table; }
-// .wrapper:after { clear: both; }
-.wrapper { // change to site-grid
-  // max-width: 1084px;
-  // padding: 0 30px;
-  width: 85%;
-  max-width: $max-width;
-  margin: 0 auto;
-  padding-bottom: 1em;
-  zoom: 1;
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-gap: 1.4em;
+.footer {
+  background: $linen;
 }
+
+
+/* Links */
+a {
+  color: $black;
+  text-decoration: underline; // text-decoration-skip fallback
+  text-decoration-skip: ink; // although this is pretty ugly
+
+}
+a:hover {
+  color: $secondary;
+  text-decoration: none;
+}
+
+
 
 .tiles {
   grid-row-gap: 0;
